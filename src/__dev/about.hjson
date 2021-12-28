@@ -1,0 +1,10 @@
+{
+    "Description": '''
+Deviant masternode'''
+    Links: [
+        { 
+            website: "https://deviantcoin.io/",
+            explorer: "https://explorer.deviantcoin.io/"
+        }
+    ]
+}

@@ -1,0 +1,70 @@
+name: Update AIR with new release
+
+on:
+  # push:
+  #   branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
+
+  workflow_dispatch:
+    inputs:
+      dispatchrepo:
+        description: 'Dispatch repository'
+        required: true
+        default: 'jpaarhuis/air'
+      definitionpath:
+        description: 'Air definition location'
+        required: true
+        default: 'posmn/gbx/node'
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: get version
+        id: version
+        uses: notiz-dev/github-action-json-property@release
+        with: 
+            path: 'src/specs.json'
+            prop_path: 'version'
+
+
+      - name: zip src
+        uses: papeloto/action-zip@v1
+        with:
+          files: src/
+          dest: zipped.zip
+
+      - name: release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          release_name: ${{ steps.version.outputs.prop }}
+          tag_name: ${{ steps.version.outputs.prop }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: upload artifact
+        uses: actions/upload-release-asset@v1
+        id: upload_artifact
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: zipped.zip
+          asset_name: ${{ github.event.repository.name }}-${{ steps.version.outputs.prop }}.zip
+          asset_content_type: application/zip
+
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          repository: ${{ github.event.inputs.dispatchrepo }}
+          event-type: new-release
+          client-payload: '{"url": "${{ steps.upload_artifact.outputs.browser_download_url }}", "version": "${{ steps.version.outputs.prop }}", "definitionpath": "${{ github.event.inputs.definitionpath }}"}'
