@@ -15,7 +15,7 @@ on:
       definitionpath:
         description: 'Air definition location'
         required: true
-        default: 'posmn/gbx/node'
+        default: 'posmn/dev/node'
 
 
 jobs:
