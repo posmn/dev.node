@@ -55,6 +55,14 @@ jobs:
           asset_name: ${{ github.event.repository.name }}-${{ steps.version.outputs.prop }}.zip
           asset_content_type: application/zip
 
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          repository: ${{ github.event.inputs.dispatchrepo }}
+          event-type: new-release
+          client-payload: '{"url": "${{ steps.upload_artifact.outputs.browser_download_url }}", "version": "${{ steps.version.outputs.prop }}", "definitionpath": "${{ github.event.inputs.definitionpath }}"}'
+
       - name: Generate SHA256 and PACKAGE_SOURCE
         id: release_info
         run: |
