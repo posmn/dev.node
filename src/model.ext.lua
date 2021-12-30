@@ -7,9 +7,8 @@ am.app.set_model(
             masternode = am.app.get_configuration("NODE_PRIVKEY") and 1 or nil
         },
         DAEMON_URL = "https://github.com/Deviantcoin/Wallet-4.1.x/releases/download/v5.0.0/Deviant-5.0.0-x86_64-linux-gnu.zip",
-        DAEMON_ARCHIVE_KIND = "tar.gz",
-        DAEMON_NAME = "bin/deviantd",
-        CLI_NAME = "bin/deviant-cli",
+        DAEMON_NAME = "Deviant-5.0.0-x86_64-linux-gnu/deviantd",
+        CLI_NAME = "Deviant-5.0.0-x86_64-linux-gnu/deviant-cli",
         CONF_NAME = "deviant.conf",
         CONF_SOURCE = "__btc/assets/daemon.conf",
         SERVICE_NAME = "deviantd",

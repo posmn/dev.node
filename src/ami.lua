@@ -34,14 +34,14 @@ return {
                 if _noOptions or _options.configure then
                     am.app.render()
 
-                    local _proc = proc.spawn('bash', { '-c', 'cd bin && ./install-params.sh /home/dev/.deviant-params' }, { stdio = {stdout = 'pipe', stderr = 'pipe'}, wait = true})
-                    log_success("install-params.sh executed...")
+                    -- local _proc = proc.spawn('bash', { '-c', 'cd bin && ./install-params.sh /home/dev/.deviant-params' }, { stdio = {stdout = 'pipe', stderr = 'pipe'}, wait = true})
+                    -- log_success("install-params.sh executed...")
 
-                    ami_assert(
-                        fs.safe_read_file("/home/dev/.deviant-params/sapling-output.params"),
-                        "Deviant params not installed correctly",
-                        EXIT_INVALID_CONFIGURATION
-                    )
+                    -- ami_assert(
+                    --     fs.safe_read_file("/home/dev/.deviant-params/sapling-output.params"),
+                    --     "Deviant params not installed correctly",
+                    --     EXIT_INVALID_CONFIGURATION
+                    -- )
 
                     am.execute_extension("__btc/configure.lua", { contextFailExitCode = EXIT_APP_CONFIGURE_ERROR })
                 end
