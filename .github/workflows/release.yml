@@ -17,6 +17,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: get id
+        id: id
+        uses: notiz-dev/github-action-json-property@release
+        with: 
+            path: 'src/specs.json'
+            prop_path: 'id'
+
       - name: get version
         id: version
         uses: notiz-dev/github-action-json-property@release
@@ -65,7 +72,7 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: jpaarhuis/air
           event-type: app-release
-          client-payload: '{ "id": "${{ github.event.repository.name }}", "repository": "${{github.repository}}", "version": "${{ steps.version.outputs.prop }}", "package": "${{ steps.upload_artifact.outputs.browser_download_url }}", "sha256": "${{ steps.release_info.outputs.SHA256 }}"}'
+          client-payload: '{ "id": "${{ steps.id.outputs.prop }}", "repository": "${{github.repository}}", "version": "${{ steps.version.outputs.prop }}", "package": "${{ steps.upload_artifact.outputs.browser_download_url }}", "sha256": "${{ steps.release_info.outputs.SHA256 }}"}'
       
         
           
