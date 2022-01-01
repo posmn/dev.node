@@ -32,7 +32,7 @@ jobs:
           prop_path: 'version'
 
       - name: zip src
-        uses: papeloto/action-zip@v1
+        uses: vimtor/action-zip@v1
         with:
           files: src/
           dest: zipped.zip
