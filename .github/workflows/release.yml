@@ -31,7 +31,6 @@ jobs:
           path: 'src/specs.json'
           prop_path: 'version'
 
-
       - name: zip src
         uses: papeloto/action-zip@v1
         with:
