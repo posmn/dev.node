@@ -21,15 +21,15 @@ jobs:
         id: id
         uses: notiz-dev/github-action-json-property@release
         with: 
-            path: 'src/specs.json'
-            prop_path: 'id'
+          path: 'src/specs.json'
+          prop_path: 'id'
 
       - name: get version
         id: version
         uses: notiz-dev/github-action-json-property@release
         with: 
-            path: 'src/specs.json'
-            prop_path: 'version'
+          path: 'src/specs.json'
+          prop_path: 'version'
 
 
       - name: zip src
