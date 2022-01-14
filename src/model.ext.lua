@@ -9,7 +9,7 @@ am.app.set_model(
         DAEMON_URL = "https://github.com/Deviantcoin/Wallet-4.1.x/releases/download/v5.0.0/Deviant-5.0.0-x86_64-linux-gnu.zip",
         DAEMON_NAME = "Deviant-5.0.0-x86_64-linux-gnu/deviantd",
         CLI_NAME = "Deviant-5.0.0-x86_64-linux-gnu/deviant-cli",
-        CONF_NAME = "deviant.conf",
+        CONF_NAME = "dev.conf",
         CONF_SOURCE = "__btc/assets/daemon.conf",
         SERVICE_NAME = "deviantd",
     },
