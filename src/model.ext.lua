@@ -10,7 +10,7 @@ am.app.set_model(
         DAEMON_ARCHIVE_KIND = "tar.gz",
         DAEMON_NAME = "bin/deviantd",
         CLI_NAME = "bin/deviant-cli",
-        CONF_NAME = "dev.conf",
+        CONF_NAME = "deviant.conf",
         CONF_SOURCE = "__btc/assets/daemon.conf",
         SERVICE_NAME = "deviantd",
     },
